@@ -32,11 +32,12 @@ public class Generador_de_turnos extends JFrame {
 	 */
 	public Generador_de_turnos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 550, 350);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		setLocationRelativeTo(null);
 	}
 
 }
