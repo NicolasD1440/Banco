@@ -8,6 +8,9 @@ public class inicio {
 		// TODO Auto-generated method stub
          JOptionPane.showMessageDialog(null, "Holis");
 		System.out.println("Edicion desde github");
+		
+		
+
 	}
 
 }
