@@ -52,7 +52,7 @@ public class Portada extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("NACIMOS PARA SERVIR");
+		JLabel lblNewLabel = new JLabel("NACIMOS PARA ROBAR");
 		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD, 25));
 		lblNewLabel.setBounds(201, 131, 311, 32);
 		contentPane.add(lblNewLabel);
