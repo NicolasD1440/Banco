@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.Font;
 
 public class Portada extends JFrame {
 
@@ -50,7 +51,13 @@ public class Portada extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		progressBar.setForeground(new Color(204, 153, 102));
+		
+		JLabel lblNewLabel = new JLabel("NACIMOS PARA SERVIR");
+		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD, 25));
+		lblNewLabel.setBounds(201, 131, 311, 32);
+		contentPane.add(lblNewLabel);
+		progressBar.setStringPainted(true);
+		progressBar.setForeground(new Color(204, 153, 0));
 		
 		
 		progressBar.setBounds(10, 226, 514, 25);
