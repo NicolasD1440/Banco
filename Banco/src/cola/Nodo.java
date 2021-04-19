@@ -3,20 +3,17 @@ package cola;
 
 
 public class Nodo {
-	  private int informacion;
+	  private Turnos informacion;
 	  private Nodo referencia;
 	  
 	  
 	  
-	public Nodo(int informacion) {
-		super();
-		this.informacion = informacion;
-	}
 	
-	public int getInformacion() {
+	
+	public Turnos getInformacion() {
 		return informacion;
 	}
-	public void setInformacion(int informacion) {
+	public void setInformacion(Turnos informacion) {
 		this.informacion = informacion;
 	}
 	public Nodo getReferencia() {
@@ -25,5 +22,5 @@ public class Nodo {
 	public void setReferencia(Nodo referencia) {
 		this.referencia = referencia;
 	}
-	  
+	
 }

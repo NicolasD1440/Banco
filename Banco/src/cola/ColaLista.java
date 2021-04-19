@@ -1,6 +1,6 @@
 package cola;
 
-
+import vistas.Portada;
 
 public class ColaLista {
 	//Elemntos 
@@ -21,8 +21,9 @@ public class ColaLista {
 		public boolean ColaVacia() {
 			return this.primero == null && this.ultimo == null;
 					}
-		public void encolar(int v) {
-			Nodo nodo = new Nodo(v);
+		public void encolar(Turnos v) {
+			Nodo nodo = new Nodo();
+			nodo.setInformacion(v);
 			if(ColaVacia()){
 				this.primero = nodo;
 			}else {
@@ -57,4 +58,25 @@ public class ColaLista {
 				System.out.println("cola vacia");
 			}
 		}
+		public String searchPosition(int p) throws Exception {
+			if((p >= 0) && (p < this.tam)) {
+				if(p == 0) {
+					return this.primero.getInformacion().getCodigo();
+				}else {
+					Nodo aux = this.primero; //Nodo de acceso a la lista
+					for(int i = 0; i < p; i++) {
+						aux = aux.getReferencia();
+						
+					}
+					return aux.getInformacion().getCodigo();
+				}
+			}else {
+				throw new Exception("La posicion esta fuera de la lista.");
+			}
+		}
+		public Nodo primero() {
+			return primero;
+			
+		}
+
 }

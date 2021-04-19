@@ -9,6 +9,9 @@ import java.util.TimerTask;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import inicio.Inicio;
+
 import javax.swing.JProgressBar;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -20,7 +23,7 @@ import java.awt.Font;
 public class Portada extends JFrame {
 
 	private JPanel contentPane;
-	Generador_de_turnos ventana = new Generador_de_turnos();
+	Generador_de_turnos ventana = new Generador_de_turnos(Inicio.cola.primero());
 	JLabel lblLogo = new JLabel("New label");
 	JProgressBar progressBar = new JProgressBar();
 	Timer timer = new Timer();
