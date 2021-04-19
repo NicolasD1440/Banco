@@ -4,8 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Generador_de_turnos extends JFrame {
 
@@ -35,8 +39,17 @@ public class Generador_de_turnos extends JFrame {
 		setBounds(100, 100, 550, 350);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnPrueba = new JButton("PRUEBA");
+		btnPrueba.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null, "Hola Cracks");
+			}
+		});
+		btnPrueba.setBounds(190, 175, 140, 51);
+		contentPane.add(btnPrueba);
 		setLocationRelativeTo(null);
 	}
 
