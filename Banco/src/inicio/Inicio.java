@@ -10,6 +10,6 @@ public class Inicio {
          
 		Portada ventana = new Portada();
 		ventana.setVisible(true);
-	
+	//HICE UN CAMBIO 
 }
 }
