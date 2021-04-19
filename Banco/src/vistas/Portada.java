@@ -2,6 +2,7 @@ package vistas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -10,13 +11,17 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JProgressBar;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class Portada extends JFrame {
 
 	private JPanel contentPane;
+	Generador_de_turnos ventana = new Generador_de_turnos();
+	JLabel lblLogo = new JLabel("New label");
 	JProgressBar progressBar = new JProgressBar();
-	JButton btnStart = new JButton("New button");
 	Timer timer = new Timer();
 	/**
 	 * Launch the application.
@@ -41,24 +46,21 @@ public class Portada extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 350);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		progressBar.setForeground(new Color(204, 153, 102));
 		
 		
 		progressBar.setBounds(10, 226, 514, 25);
 		contentPane.add(progressBar);
 		
-		JLabel lblLogo = new JLabel("New label");
 		lblLogo.setBounds(10, 11, 514, 204);
 		contentPane.add(lblLogo);
-		
-		
-		btnStart.setBounds(225, 277, 89, 23);
-		contentPane.add(btnStart);
 		setLocationRelativeTo(null);
 		carga();
-		btnStart.setVisible(false);
+		Logo();
 	}
 	
 	public void carga() {
@@ -70,13 +72,20 @@ public class Portada extends JFrame {
 						
 						progressBar.setValue(x++);
 						if(x ==100) {
-							btnStart.setVisible(true);
-
+							ventana.setVisible(true);
+							dispose();
 			   		  
 			   	  }
 					}
 
 			   	  };
 			   	  timer.schedule(tarea, 0,10);
+	}
+	
+	private void Logo() {
+		
+		Image imagen = new ImageIcon(this.getClass().getResource("/Logo.png"))
+				.getImage().getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(),Image.SCALE_DEFAULT);
+			lblLogo.setIcon(new ImageIcon(imagen));
 	}
 }
