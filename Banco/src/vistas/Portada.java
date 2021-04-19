@@ -79,7 +79,7 @@ public class Portada extends JFrame {
 					}
 
 			   	  };
-			   	  timer.schedule(tarea, 0,10);
+			   	  timer.schedule(tarea, 0,30);
 	}
 	
 	private void Logo() {
