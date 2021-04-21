@@ -62,7 +62,7 @@ public class ColaLista {
 				if(objeto.getInformacion().getCedula().equals(cedula)) {
 				//Se implementa un condiconal que por medio del atributo cedula me busque un elemento que sea igual a una cedula de un usuario
 					encontrado = true;
-					//Si se cumple esta condicion me devuelve un valor verdadero
+					//Si se cumple esta condicion me devuelve un valor verdadero.
 				}
 				else {
 					objeto = objeto.getReferencia();
