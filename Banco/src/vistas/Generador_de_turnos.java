@@ -101,7 +101,6 @@ public class Generador_de_turnos extends JFrame {
 		token.setBounds(10, 157, 564, 66);
 		panel.add(token);
 		token.setFont(new Font("Impact", Font.PLAIN, 30));
-		token.setText("t");
 		token.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Por favor Ingrese su cedula:");
