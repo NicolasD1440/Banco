@@ -58,7 +58,7 @@ public class ColaLista {
 			boolean encontrado = false;//Se crea una variable de tipo logico que sea igual a falso
 			int i = 0;//Se crea una variable de tipo entero que sea igual a cero
 			while(encontrado == false && i < tam) {//Se implementa el ciclo while
-				//Esto permite que el código se ejecute repetidamente en función de la condición booleana
+				//Esto permite que el código se ejecute repetidamente en función de la condición booleana.
 				if(objeto.getInformacion().getCedula().equals(cedula)) {
 				//Se implementa un condiconal que por medio del atributo cedula me busque un elemento que sea igual a una cedula de un usuario
 					encontrado = true;
