@@ -11,13 +11,12 @@ public class Inicio {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
          
+
 	ColaLista cola = new ColaLista();
-	
-	
-	
+
 		Portada ventana = new Portada();
-		ventana.setVisible(true);
-	 
+	     ventana.setVisible(true);
+	    //Aquí lo que sea hace es que al ejecutar el programa desde esta clase se muestre la interfaz portada
 		
 		
 	}
