@@ -1,10 +1,12 @@
 package cola;
 
-public class Turnos {
+ //Se crean los atributos del turno de tipo String
+ public class Turnos {
    String cedula;
    String turno;
    String nombre;
-   
+  
+   //Constructor que inicializamos el valor de las variables.
   public Turnos(String cedula, String turno, String nombre) {
 	super();
 	this.cedula = cedula;
@@ -12,6 +14,7 @@ public class Turnos {
 	this.nombre = nombre;
 }
   
+//Métodos get y set para los atributos.
 public String getCedula() {
 	return cedula;
 }

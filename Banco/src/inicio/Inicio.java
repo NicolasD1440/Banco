@@ -11,10 +11,10 @@ public class Inicio {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
          
-		
+		//Se crea una instancia la cual permitira la interación entre las clase inicio y la interfaz portada
 		Portada ventana = new Portada();
 		ventana.setVisible(true);
-	 
+	    //Aquí lo que sea hace es que al ejecutar el programa desde esta clase se muestre la interfaz portada
 		
 		
 	}
