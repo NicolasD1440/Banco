@@ -7,120 +7,87 @@ import javax.swing.table.DefaultTableModel;
 import vistas.Portada;
 
 public class ColaLista {
-	//Elemntos 
-		private Nodo primero;
-		private Nodo ultimo;
-		private int tam;
+	
+	    //Elementos de la cola
+		private Nodo primero; //El acceso al nodo
+		private Nodo ultimo; 
+		private int tam;//Tamaño de la lista
 		
 		//constructor
 		public ColaLista() {
-			this.primero = null;
+			this.primero = null;//Se inicializan los dos punteros en null
 			this.ultimo = null;
-			this.tam = 0;
+			this.tam = 0;//Se inicializa el tamaño en cero
 			
 		}
 		
-		//Verificar si la cola Vacia
-		
+		//Este metodo se encarga de verificar si la cola esta Vacia
 		public boolean ColaVacia() {
 			return this.primero == null && this.ultimo == null;
-					}
+			 
+		}
+		
+		//Metodo para encolar al inicio o al final
 		public void encolar(Turnos v) {
 			Nodo nodo = new Nodo();
+			//Se instancia la clase nodo para permitir la interación entre las dos clases
 			nodo.setInformacion(v);
-			if(ColaVacia()){
+			//Seteamos los valores que seran asignados a las variables de instancia
+			if(ColaVacia()){ //Verifica que la cola este vacia
 				this.primero = nodo;
+				//Si la cola esta vacia se agrega el elemento al Inicio
 			}else {
 				this.ultimo.setReferencia(nodo);
+				//Si la cola cuenta con un elemento entonces se agrega al final
 			}
 			this.ultimo = nodo;
+			//Se usa el this para asignar el nuevo valor al nodo
 			this.tam++;
+			//Aqui se usa el this para asignar el nuevo tamaño
 			System.out.println("Elemento agregado");
 		}
 		
+		//Metodo para que se encarga de obtener el tamaño
 		public int getTam() {
 			return this.tam;
 		}
-		/*public void desencolar() {
-			this.primero = this.primero.getReferencia();
-			if(this.primero == null) {
-				this.ultimo = null;
-			}
-			this.tam--;
-		}*/
-		
-		/*public void mostrar() {
-			if(!ColaVacia()) {
-				Nodo aux = this.primero;
-				int i = 0;
-				while(aux != null) {
-					System.out.println(i + " " + aux.getInformacion());
-					aux = aux.getReferencia();
-					i++;
-				}
-			}else {
-				System.out.println("cola vacia");
-			}
-		}*/
-		/*public String searchPosition(int p) throws Exception {
-			if((p >= 0) && (p < this.tam)) {
-				if(p == 0) {
-					return this.primero.getInformacion().getturno();
-				}else {
-					Nodo aux = this.primero; //Nodo de acceso a la lista
-					for(int i = 0; i < p; i++) {
-						aux = aux.getReferencia();
-						
-					}
-					return aux.getInformacion().getturno();
-				}
-			}else {
-				throw new Exception("La posicion esta fuera de la lista.");
-			}
-		}*/
-		/*public DefaultTableModel elnombre(){
-			
-			Nodo aux = primero; 
-			DefaultTableModel modelo = new DefaultTableModel();
-			int i = 0;
-			i++;
-			String[] info = new String[3];
-			info[0] = aux.getInformacion().getNombre();
-			info[1] = aux.getInformacion().getCedula();
-			info[2] = aux.getInformacion().getturno();
-			info[3] = String.valueOf(i);
-			
-			modelo.addRow(info);
-			return modelo;
-		}*/
-		
+		//Este método es el encargado de guardar los datos ingresados desde la interfaz y mostrarlos en la lista;
 		public DefaultListModel<String> mostrarDatos(String cedula){
 			
-			Nodo objeto = primero;
-			boolean encontrado = false;
-			int i = 0;
-			while(encontrado == false && i < tam) {
+			Nodo objeto = primero;//Se implementa la conexión con el nodo
+			boolean encontrado = false;//Se crea una variable de tipo logico que sea igual a falso
+			int i = 0;//Se crea una variable de tipo entero que sea igual a cero
+			while(encontrado == false && i < tam) {//Se implementa el ciclo while
+				//Esto permite que el código se ejecute repetidamente en función de la condición booleana
 				if(objeto.getInformacion().getCedula().equals(cedula)) {
+				//Se implementa un condiconal que por medio del atributo cedula me busque un elemento que sea igual a una cedula de un usuario
 					encontrado = true;
+					//Si se cumple esta condicion me devuelve un valor verdadero
 				}
 				else {
 					objeto = objeto.getReferencia();
-					i++;
+					i++;//El valor de la expresión es el valor de la variable antes que el nuevo valor sea almacenado.
 				}
 			}
+			//Se instancia la lista para poder mostrar los datos en la interfaz
 			DefaultListModel<String> modelo = new DefaultListModel<String>();
-			if(encontrado) {
+			if(encontrado) {//Se implementa el resultado de la variable de tipo logico la cual es verdadera
 				
+				//Estos son los datos que se agregaran a la lista
 				modelo.addElement("Nombre: " + objeto.getInformacion().getNombre().toUpperCase() );
 				modelo.addElement("Cedula: " + objeto.getInformacion().getCedula() );
 				modelo.addElement("Turno: " + objeto.getInformacion().getturno() );
 				modelo.addElement("Posicion: " + (i+1) );
 				
 			}else {
+				//Si la variable logica sigue siendo falsa entonces envia este mensaje
 				JOptionPane.showMessageDialog(null, "Numero de cedula no encontrado");
 			}
+			//Se retornan los datos que se mostraran en la lista
 			return modelo;
 		}
+		//Metodo encargado de dar acceso al nodo para ser utilizado
+		//dentro de la interfaz
 		public Nodo primero() {
 			return primero;
 			

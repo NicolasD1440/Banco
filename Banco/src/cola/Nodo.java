@@ -1,14 +1,9 @@
 package cola;
 
-
-
 public class Nodo {
-	  private Turnos informacion;
-	  private Nodo referencia;
-	  
-	  
-	  
 	
+	  private Turnos informacion;//Aqui se cambia por el objeto
+	  private Nodo referencia;
 	
 	public Turnos getInformacion() {
 		return informacion;
