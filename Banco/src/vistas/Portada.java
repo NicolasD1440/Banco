@@ -71,9 +71,9 @@ public class Portada extends JFrame {
 		
 		lblLogo.setBounds(10, 11, 514, 204);
 		contentPane.add(lblLogo);
-		setLocationRelativeTo(null);//Se implementa este codigo para que la ventana se muestre en el centro
+		setLocationRelativeTo(null);//Se implementa este codigo para que la ventana de la interfaz se muestre en el centro
 		carga();//Se implementa el metodo para la barra de carga
-		Logo();//Se implementa el metodo para mostrar la imagen de fono
+		Logo();//Se implementa el metodo para mostrar la imagen de fondo
 	}
 	//Metodo de carga
 	public void carga() {

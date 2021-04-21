@@ -28,16 +28,19 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.SystemColor;
+import java.awt.Color;
 
 public class Generador_de_turnos extends JFrame {
-
+	
+	//Se colocan las variables de los label contentpane, Texfield, JButton
+    //en la parte superior ya que serán utilizadas en los métodos dentro de la interfaz.
 	private JPanel contentPane;
 	JLabel token = new JLabel();
 	private JTextField textCedula;
 	JButton btnBuscar = new JButton("Buscar");
     Inicio ini = new Inicio();
     JLabel lblLogo = new JLabel("New label");
-    JList<String> list = new JList<String>();
+    JList<String> list = new JList<String>();//Instancia para implementar los datos dentro de la lista
 
 	/**
 	 * Launch the application.
@@ -61,42 +64,43 @@ public class Generador_de_turnos extends JFrame {
 	
 	private JLabel lblNombre = new JLabel("");
 	private JTextField txtNombre;
-	ColaLista lista = new ColaLista();
+	ColaLista lista = new ColaLista();//Se instancia para poder utilizar el metodo que esta en la clase ColaLista de agregar y buscar en la lista
 	private JTextField txtCedula;
 	public Generador_de_turnos() {
 		setTitle("Menu");
 				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 380);
+		setBounds(100, 100, 602, 417);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(250, 235, 215));
 		panel.setBounds(0, 72, 584, 228);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("GENERADOR DE TURNOS");
-		lblNewLabel.setBounds(10, 11, 564, 27);
+		lblNewLabel.setBounds(10, 25, 564, 27);
 		panel.add(lblNewLabel);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Impact", Font.PLAIN, 20));
 		
 		JLabel lblNewLabel_2 = new JLabel("Por favor Ingrese su nombre:");
-		lblNewLabel_2.setBounds(10, 49, 265, 20);
+		lblNewLabel_2.setBounds(2, 61, 265, 20);
 		panel.add(lblNewLabel_2);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		txtNombre = new JTextField();
-		txtNombre.setBounds(277, 49, 190, 20);
+		txtNombre.setBounds(277, 65, 190, 20);
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
-		JButton btnPrueba = new JButton("GENERAR");
-		btnPrueba.setBounds(477, 63, 97, 25);
-		panel.add(btnPrueba);
+		JButton btnGenerar = new JButton("GENERAR");
+		btnGenerar.setBounds(477, 75, 97, 25);
+		panel.add(btnGenerar);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Su turno es:");
 		lblNewLabel_1_1.setBounds(10, 121, 564, 25);
@@ -110,23 +114,27 @@ public class Generador_de_turnos extends JFrame {
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Por favor Ingrese su cedula:");
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_2_1.setBounds(10, 80, 258, 20);
+		lblNewLabel_2_1.setBounds(10, 90, 258, 20);
 		panel.add(lblNewLabel_2_1);
 		
 		txtCedula = new JTextField();
-		txtCedula.setBounds(277, 80, 190, 20);
+		txtCedula.setBounds(277, 90, 190, 20);
 		panel.add(txtCedula);
 		txtCedula.setColumns(10);
-		btnPrueba.addActionListener(new ActionListener() {
+		
+		
+		btnGenerar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				//En este boton nos encontramos con un condicional que dice que si los 
+				//campos estan diligenciados agregue los datos ingresados en la cola
 				if(!txtNombre.getText().isEmpty() && !txtCedula.getText().isEmpty()) {
-				token.setText(generar());
-				lista.encolar(new Turnos(txtCedula.getText(),token.getText(),txtNombre.getText()));
-				txtNombre.setText("");
-				txtCedula.setText("");
+				token.setText(generar());//Label donde se genera el codigo de forma aleatoria
+				lista.encolar(new Turnos(txtCedula.getText(),token.getText(),txtNombre.getText()));//Agrega los elementos dentro de la cola
+				txtNombre.setText("");//Coloca el campo nuevamente vacio
+				txtCedula.setText("");//Coloca el campo nuevamente vacio
 				}
 				else {
+					//Si hay un campo en blanco envia un mensaje parq que se diligencie todo
 					JOptionPane.showMessageDialog(null, "Por favor ingrese el nombre");
 				}
 				
@@ -134,6 +142,7 @@ public class Generador_de_turnos extends JFrame {
 		});
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(250, 235, 215));
 		panel_1.setBounds(0, 72, 584, 228);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
@@ -144,18 +153,23 @@ public class Generador_de_turnos extends JFrame {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		
+		
 		textCedula = new JTextField();
 		textCedula.setBounds(177, 45, 224, 20);
 		panel_1.add(textCedula);
 		textCedula.setColumns(10);
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				//Este boton cuenta con un condicional que verifica si el campo de texto esta vacio
 				if(textCedula.getText().isEmpty()) {
+					//Si esta vacio se genera un mensaje que le pide al usuario dilingenciarlo bien
 					JOptionPane.showMessageDialog(null, "Por favor ingrese su cedula");
 				}else {
+					//Si no esta vacio entonces muestra los datos del usuario con ese número de cedula
 					list.setModel(lista.mostrarDatos(textCedula.getText()));
-					textCedula.setText("");
+					//Como se instancia la clase cola lista, alla hay un metodo llamado mostrar datos el tiene un 
+					//condicional de que si el numero ingresado no esta guardado en la cola muestra un mensaje de advertencia
+					textCedula.setText("");//Coloca el campo nuevamente vacio
 				}
 				
 			}
@@ -177,37 +191,39 @@ public class Generador_de_turnos extends JFrame {
 		contentPane.add(lblNombre);
 		
 		JButton btnVer = new JButton("Datos de turno");
-		btnVer.setBounds(239, 311, 118, 23);
+		btnVer.setBounds(239, 325, 118, 23);
 		contentPane.add(btnVer);
 		
 		JButton btnAtras = new JButton("Nuevo turno");
-		btnAtras.setBounds(239, 311, 118, 23);
+		btnAtras.setBounds(239, 325, 118, 23);
 		contentPane.add(btnAtras);
 		
-		lblLogo.setBounds(102, 0, 373, 72);
+		lblLogo.setBounds(0, 0, 584, 359);
 		contentPane.add(lblLogo);
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//Al presionar este boton se ocultan los siguientes elementos 
 				panel_1.setVisible(false);
 				panel.setVisible(true);
 				btnVer.setVisible(true);
 				btnAtras.setVisible(false);
-				token.setText("");
+				token.setText("");//Y se coloca el campo nuevamente vacio
 				
 			}
 		});
 		btnVer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				panel.setVisible(false);
-				panel_1.setVisible(true);
-				btnAtras.setVisible(true);
-				btnVer.setVisible(false);
-				list.setListData(new String[0]);
+				//Al presionar este boton 
+				panel.setVisible(false);//Se oculate este elemento
+				panel_1.setVisible(true);//Se pone visible este elemento
+				btnAtras.setVisible(true);//Se pone visible este elemento
+				btnVer.setVisible(false);//Se oculate este elemento
+				list.setListData(new String[0]);//Se pone visible la lista donde se mostraron los datos
 			}
 		});
-		setLocationRelativeTo(null);
-		btnAtras.setVisible(false);
-		Logo();
+		setLocationRelativeTo(null);//Se implementa este codigo para que la ventana de la interfaz se muestre en el centro
+		btnAtras.setVisible(false);//Se oculta este boton y solo se activa hasta que se presiona el boton Ver
+		Logo();//Se implementa el metodo para mostrar la imagen de fondo
 	}
 	public String generar() {
 		  String matricula = "";
@@ -235,10 +251,12 @@ public class Generador_de_turnos extends JFrame {
 		
 	
 }
+	//Metodo para agregar una imagen de fondo
 	private void Logo() {
-		
-		Image imagen = new ImageIcon(this.getClass().getResource("/Logo.png"))
+		//La imagen está dentro del programa en una carpeta llamada recursos desde allí se trae esta imagen 
+		Image imagen = new ImageIcon(this.getClass().getResource("/Fondo.jpg"))
 				.getImage().getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(),Image.SCALE_DEFAULT);
 			lblLogo.setIcon(new ImageIcon(imagen));
+	 //Con getScaledInstance(lblFondo.getWidth(),lblFondo.getHeight(),Image.SCALE_DEFAULT, se adapta al tamaño delLabel la imagen			
 	}
 }
