@@ -61,14 +61,14 @@ public class ColaLista {
 		public String searchPosition(int p) throws Exception {
 			if((p >= 0) && (p < this.tam)) {
 				if(p == 0) {
-					return this.primero.getInformacion().getCodigo();
+					return this.primero.getInformacion().getturno();
 				}else {
 					Nodo aux = this.primero; //Nodo de acceso a la lista
 					for(int i = 0; i < p; i++) {
 						aux = aux.getReferencia();
 						
 					}
-					return aux.getInformacion().getCodigo();
+					return aux.getInformacion().getturno();
 				}
 			}else {
 				throw new Exception("La posicion esta fuera de la lista.");

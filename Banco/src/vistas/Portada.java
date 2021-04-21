@@ -23,7 +23,7 @@ import java.awt.Font;
 public class Portada extends JFrame {
 
 	private JPanel contentPane;
-	Generador_de_turnos ventana = new Generador_de_turnos(Inicio.cola.primero());
+	Generador_de_turnos ventana = new Generador_de_turnos();
 	JLabel lblLogo = new JLabel("New label");
 	JProgressBar progressBar = new JProgressBar();
 	Timer timer = new Timer();
@@ -55,7 +55,7 @@ public class Portada extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("NACIMOS PARA ROBAR");
+		JLabel lblNewLabel = new JLabel("NACIMOS PARA SERVIR");
 		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD, 25));
 		lblNewLabel.setBounds(201, 131, 311, 32);
 		contentPane.add(lblNewLabel);
