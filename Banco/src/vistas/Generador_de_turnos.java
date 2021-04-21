@@ -26,6 +26,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import java.awt.SystemColor;
 
 public class Generador_de_turnos extends JFrame {
 
@@ -62,6 +64,7 @@ public class Generador_de_turnos extends JFrame {
 	ColaLista lista = new ColaLista();
 	private JTextField txtCedula;
 	public Generador_de_turnos() {
+		setTitle("Menu");
 				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 380);
@@ -69,37 +72,6 @@ public class Generador_de_turnos extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 72, 584, 228);
-		contentPane.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("Escriba su cedula");
-		lblNewLabel_1.setBounds(10, 11, 564, 23);
-		panel_1.add(lblNewLabel_1);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		textCedula = new JTextField();
-		textCedula.setBounds(177, 45, 224, 20);
-		panel_1.add(textCedula);
-		textCedula.setColumns(10);
-		btnBuscar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				list.setModel(lista.mostrarDatos(txtCedula.getText()));
-				txtCedula.setText("");
-			}
-		});
-		btnBuscar.setBounds(242, 76, 89, 23);
-		panel_1.add(btnBuscar);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(177, 108, 224, 109);
-		panel_1.add(scrollPane);
-		scrollPane.setViewportView(list);
-		panel_1.setVisible(false);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 72, 584, 228);
@@ -160,6 +132,46 @@ public class Generador_de_turnos extends JFrame {
 				
 			}
 		});
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(0, 72, 584, 228);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Escriba su cedula");
+		lblNewLabel_1.setBounds(10, 11, 564, 23);
+		panel_1.add(lblNewLabel_1);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		textCedula = new JTextField();
+		textCedula.setBounds(177, 45, 224, 20);
+		panel_1.add(textCedula);
+		textCedula.setColumns(10);
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(textCedula.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Por favor ingrese su cedula");
+				}else {
+					list.setModel(lista.mostrarDatos(textCedula.getText()));
+					textCedula.setText("");
+				}
+				
+			}
+		});
+		btnBuscar.setBounds(242, 76, 89, 23);
+		panel_1.add(btnBuscar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(177, 110, 224, 107);
+		panel_1.add(scrollPane);
+		list.setBackground(SystemColor.control);
+		list.setBorder(null);
+		list.setEnabled(false);
+		scrollPane.setViewportView(list);
+		list.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		panel_1.setVisible(false);
 		lblNombre.setBounds(191, 247, 125, 14);
 		
 		contentPane.add(lblNombre);
@@ -180,6 +192,7 @@ public class Generador_de_turnos extends JFrame {
 				panel.setVisible(true);
 				btnVer.setVisible(true);
 				btnAtras.setVisible(false);
+				token.setText("");
 				
 			}
 		});
@@ -197,28 +210,30 @@ public class Generador_de_turnos extends JFrame {
 		Logo();
 	}
 	public String generar() {
-		  String matricula = "";
-		    int a;
-		     String CaracteresNoDeseados = "AEIOU";
+		  String codigo = "";
+		  int a;
+		     String CaracteresNoDeseados = "AEIOU"; //Careteres que no queremos
 		    for (int i = 0; i < 7; i++) {
 		        if (i < 4) {    // 0,1,2,3 posiciones de numeros
-		            matricula = (int) (Math.random() * 9) + "" + matricula;
+		            codigo = (int) (Math.random() * 9) + "" + codigo;//generamos numeros del 0 al 9
 
 		        } else {       // 4,5,6 posiciones de letras
 		            do {
-		                a = (int) (Math.random() * 26 + 65);///
+		                a = (int) (Math.random() * 26 + 65); //tomamos los caracteres del 65 al 91 de la tabla ASCCI
+		                
 		            } while (CaracteresNoDeseados.indexOf(a) >= 0);
 
 		            char letra = (char) a;
-		            if (i == 4) {
-		                matricula = matricula + "-" + letra;
-		            } else {
-		                matricula = matricula + "" + letra;
+		            
+		            if (i == 4) { // si i es igual a 4 entoces ya hemos generado los 4 numeros nesesarios para el codigo
+		                codigo = codigo + "-" + letra;
+		            } else {  
+		                codigo = codigo + "" + letra;
 		            }
 
 		        }
 		    }
-		    return matricula;
+		    return codigo;
 		
 	
 }
