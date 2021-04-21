@@ -1,5 +1,7 @@
 package cola;
 
+import javax.swing.DefaultListModel;
+
 import vistas.Portada;
 
 public class ColaLista {
@@ -37,15 +39,15 @@ public class ColaLista {
 		public int getTam() {
 			return this.tam;
 		}
-		public void desencolar() {
+		/*public void desencolar() {
 			this.primero = this.primero.getReferencia();
 			if(this.primero == null) {
 				this.ultimo = null;
 			}
 			this.tam--;
-		}
+		}*/
 		
-		public void mostrar() {
+		/*public void mostrar() {
 			if(!ColaVacia()) {
 				Nodo aux = this.primero;
 				int i = 0;
@@ -57,8 +59,8 @@ public class ColaLista {
 			}else {
 				System.out.println("cola vacia");
 			}
-		}
-		public String searchPosition(int p) throws Exception {
+		}*/
+		/*public String searchPosition(int p) throws Exception {
 			if((p >= 0) && (p < this.tam)) {
 				if(p == 0) {
 					return this.primero.getInformacion().getturno();
@@ -73,6 +75,28 @@ public class ColaLista {
 			}else {
 				throw new Exception("La posicion esta fuera de la lista.");
 			}
+		}*/
+		
+		public DefaultListModel<String> mostrarDatos(String cedula){
+			
+			Nodo aux = primero;
+			DefaultListModel<String> listModel = new DefaultListModel<String>();
+			
+			if(!ColaVacia()) {
+				for(int i = 0; i < tam; i++) {
+					listModel.addElement("Nombre: " + aux.getInformacion().getNombre());
+					listModel.addElement("Cedula: " + aux.getInformacion().getCedula());
+					listModel.addElement("Turno: " + aux.getInformacion().getturno());
+					listModel.addElement("Posicion: " + (i+1));
+					aux = aux.getReferencia();
+				}
+				return listModel;	
+			}
+			else {
+				listModel.addElement("No hay ningun turno");
+				return listModel;
+			}
+			
 		}
 		public Nodo primero() {
 			return primero;

@@ -24,16 +24,18 @@ import java.awt.Image;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
 
 public class Generador_de_turnos extends JFrame {
 
 	private JPanel contentPane;
 	JLabel token = new JLabel();
-	private JTextField textTurno;
-	JLabel lblRes = new JLabel("En este espacio que aparezcan los datos: Nombre, cedula, Turno y la posicion al ingresar la cedula y presionar bus");
+	private JTextField textCedula;
 	JButton btnBuscar = new JButton("Buscar");
     Inicio ini = new Inicio();
     JLabel lblLogo = new JLabel("New label");
+    JList<String> list = new JList<String>();
 
 	/**
 	 * Launch the application.
@@ -67,6 +69,37 @@ public class Generador_de_turnos extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(0, 72, 584, 228);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Escriba su cedula");
+		lblNewLabel_1.setBounds(10, 11, 564, 23);
+		panel_1.add(lblNewLabel_1);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		textCedula = new JTextField();
+		textCedula.setBounds(177, 45, 224, 20);
+		panel_1.add(textCedula);
+		textCedula.setColumns(10);
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				list.setModel(lista.mostrarDatos(txtCedula.getText()));
+				txtCedula.setText("");
+			}
+		});
+		btnBuscar.setBounds(242, 76, 89, 23);
+		panel_1.add(btnBuscar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(177, 108, 224, 109);
+		panel_1.add(scrollPane);
+		scrollPane.setViewportView(list);
+		panel_1.setVisible(false);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 72, 584, 228);
@@ -117,7 +150,7 @@ public class Generador_de_turnos extends JFrame {
 				
 				if(!txtNombre.getText().isEmpty() && !txtCedula.getText().isEmpty()) {
 				token.setText(generar());
-				lista.encolar(new Turnos(1,txtCedula.getText(),token.getText(),txtNombre.getText()));
+				lista.encolar(new Turnos(txtCedula.getText(),token.getText(),txtNombre.getText()));
 				txtNombre.setText("");
 				txtCedula.setText("");
 				}
@@ -127,28 +160,6 @@ public class Generador_de_turnos extends JFrame {
 				
 			}
 		});
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 72, 584, 228);
-		contentPane.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("Escriba su cedula");
-		lblNewLabel_1.setBounds(10, 11, 564, 23);
-		panel_1.add(lblNewLabel_1);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		textTurno = new JTextField();
-		textTurno.setBounds(177, 45, 224, 20);
-		panel_1.add(textTurno);
-		textTurno.setColumns(10);
-		btnBuscar.setBounds(242, 76, 89, 23);
-		panel_1.add(btnBuscar);
-		lblRes.setBounds(10, 118, 564, 92);
-		panel_1.add(lblRes);
-		lblRes.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.setVisible(false);
 		lblNombre.setBounds(191, 247, 125, 14);
 		
 		contentPane.add(lblNombre);
@@ -178,6 +189,7 @@ public class Generador_de_turnos extends JFrame {
 				panel_1.setVisible(true);
 				btnAtras.setVisible(true);
 				btnVer.setVisible(false);
+				list.setListData(new String[0]);
 			}
 		});
 		setLocationRelativeTo(null);
