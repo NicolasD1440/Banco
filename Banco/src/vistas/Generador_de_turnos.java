@@ -26,6 +26,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import java.awt.SystemColor;
 
 public class Generador_de_turnos extends JFrame {
 
@@ -62,6 +64,7 @@ public class Generador_de_turnos extends JFrame {
 	ColaLista lista = new ColaLista();
 	private JTextField txtCedula;
 	public Generador_de_turnos() {
+		setTitle("Menu");
 				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 380);
@@ -69,37 +72,6 @@ public class Generador_de_turnos extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 72, 584, 228);
-		contentPane.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("Escriba su cedula");
-		lblNewLabel_1.setBounds(10, 11, 564, 23);
-		panel_1.add(lblNewLabel_1);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		textCedula = new JTextField();
-		textCedula.setBounds(177, 45, 224, 20);
-		panel_1.add(textCedula);
-		textCedula.setColumns(10);
-		btnBuscar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				list.setModel(lista.mostrarDatos(txtCedula.getText()));
-				txtCedula.setText("");
-			}
-		});
-		btnBuscar.setBounds(242, 76, 89, 23);
-		panel_1.add(btnBuscar);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(177, 108, 224, 109);
-		panel_1.add(scrollPane);
-		scrollPane.setViewportView(list);
-		panel_1.setVisible(false);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 72, 584, 228);
@@ -134,7 +106,6 @@ public class Generador_de_turnos extends JFrame {
 		token.setBounds(10, 157, 564, 66);
 		panel.add(token);
 		token.setFont(new Font("Impact", Font.PLAIN, 30));
-		token.setText("t");
 		token.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Por favor Ingrese su cedula:");
@@ -161,6 +132,46 @@ public class Generador_de_turnos extends JFrame {
 				
 			}
 		});
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(0, 72, 584, 228);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Escriba su cedula");
+		lblNewLabel_1.setBounds(10, 11, 564, 23);
+		panel_1.add(lblNewLabel_1);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		textCedula = new JTextField();
+		textCedula.setBounds(177, 45, 224, 20);
+		panel_1.add(textCedula);
+		textCedula.setColumns(10);
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(textCedula.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Por favor ingrese su cedula");
+				}else {
+					list.setModel(lista.mostrarDatos(textCedula.getText()));
+					textCedula.setText("");
+				}
+				
+			}
+		});
+		btnBuscar.setBounds(242, 76, 89, 23);
+		panel_1.add(btnBuscar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(177, 110, 224, 107);
+		panel_1.add(scrollPane);
+		list.setBackground(SystemColor.control);
+		list.setBorder(null);
+		list.setEnabled(false);
+		scrollPane.setViewportView(list);
+		list.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		panel_1.setVisible(false);
 		lblNombre.setBounds(191, 247, 125, 14);
 		
 		contentPane.add(lblNombre);
@@ -181,6 +192,7 @@ public class Generador_de_turnos extends JFrame {
 				panel.setVisible(true);
 				btnVer.setVisible(true);
 				btnAtras.setVisible(false);
+				token.setText("");
 				
 			}
 		});

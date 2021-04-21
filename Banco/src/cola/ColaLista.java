@@ -1,6 +1,8 @@
 package cola;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import vistas.Portada;
 
@@ -76,31 +78,54 @@ public class ColaLista {
 				throw new Exception("La posicion esta fuera de la lista.");
 			}
 		}*/
+		/*public DefaultTableModel elnombre(){
+			
+			Nodo aux = primero; 
+			DefaultTableModel modelo = new DefaultTableModel();
+			int i = 0;
+			i++;
+			String[] info = new String[3];
+			info[0] = aux.getInformacion().getNombre();
+			info[1] = aux.getInformacion().getCedula();
+			info[2] = aux.getInformacion().getturno();
+			info[3] = String.valueOf(i);
+			
+			modelo.addRow(info);
+			return modelo;
+		}*/
 		
 		public DefaultListModel<String> mostrarDatos(String cedula){
 			
-			Nodo aux = primero;
-			DefaultListModel<String> listModel = new DefaultListModel<String>();
-			
-			if(!ColaVacia()) {
-				for(int i = 0; i < tam; i++) {
-					listModel.addElement("Nombre: " + aux.getInformacion().getNombre());
-					listModel.addElement("Cedula: " + aux.getInformacion().getCedula());
-					listModel.addElement("Turno: " + aux.getInformacion().getturno());
-					listModel.addElement("Posicion: " + (i+1));
-					aux = aux.getReferencia();
+			Nodo objeto = primero;
+			boolean encontrado = false;
+			int i = 0;
+			while(encontrado == false && i < tam) {
+				if(objeto.getInformacion().getCedula().equals(cedula)) {
+					encontrado = true;
 				}
-				return listModel;	
+				else {
+					objeto = objeto.getReferencia();
+					i++;
+				}
 			}
-			else {
-				listModel.addElement("No hay ningun turno");
-				return listModel;
+			DefaultListModel<String> modelo = new DefaultListModel<String>();
+			if(encontrado) {
+				
+				modelo.addElement("Nombre: " + objeto.getInformacion().getNombre().toUpperCase() );
+				modelo.addElement("Cedula: " + objeto.getInformacion().getCedula() );
+				modelo.addElement("Turno: " + objeto.getInformacion().getturno() );
+				modelo.addElement("Posicion: " + (i+1) );
+				
+			}else {
+				JOptionPane.showMessageDialog(null, "Numero de cedula no encontrado");
 			}
-			
+			return modelo;
 		}
 		public Nodo primero() {
 			return primero;
 			
 		}
+		
+		
 
 }
