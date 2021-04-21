@@ -77,7 +77,7 @@ public class Generador_de_turnos extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(250, 235, 215));
+		panel.setBackground(new Color(253, 245, 230));
 		panel.setBounds(0, 72, 584, 228);
 		contentPane.add(panel);
 		panel.setLayout(null);
